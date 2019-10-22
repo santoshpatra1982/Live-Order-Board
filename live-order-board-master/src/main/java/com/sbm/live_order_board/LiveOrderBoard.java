@@ -9,8 +9,12 @@ import java.util.NoSuchElementException;
 import java.util.TreeMap;
 import java.util.UUID;
 
-import static com.sbm.live_order_board.OrderType.BUY;
-import static com.sbm.live_order_board.OrderType.SELL;
+import com.sbm.live_order_board.model.Order;
+import com.sbm.live_order_board.model.OrderType;
+import com.sbm.live_order_board.model.SummaryEntry;
+
+import static com.sbm.live_order_board.model.OrderType.BUY;
+import static com.sbm.live_order_board.model.OrderType.SELL;
 import static java.util.Comparator.naturalOrder;
 import static java.util.Comparator.reverseOrder;
 import static java.util.stream.Collectors.groupingBy;
@@ -21,12 +25,25 @@ public class LiveOrderBoard {
 
     private final Map<UUID, Order> orders = new HashMap<>();
 
+    
+    /**
+     * Method to registerOrder
+     *  @param order
+     */
+    
+    
     public UUID registerOrder(Order order) {
         UUID id = UUID.randomUUID();
         orders.put(id, order);
 
         return id;
     }
+    
+    
+    /**
+     * Method to cancelOrder
+     *  @param id
+     */
 
     public void cancelOrder(UUID id) {
         if (orders.remove(id) == null) {
@@ -34,6 +51,12 @@ public class LiveOrderBoard {
         }
     }
 
+    
+    /**
+     * Method to getSummary
+     */
+    
+    
     public List<SummaryEntry> getSummary() {
         List<SummaryEntry> result = new ArrayList<>();
 
@@ -43,6 +66,12 @@ public class LiveOrderBoard {
         return result;
     }
 
+    
+    
+    
+    /**
+     * Method to createSummarySection based on order 
+     */
     private List<SummaryEntry> createSummarySection(OrderType type, Comparator<Integer> orderingComparator) {
         return orders.values().stream()
                 .filter(o -> o.getType() == type)

@@ -1,10 +1,17 @@
-package com.sbm.live_order_board;
+package com.sbm.live_order_board.model;
 
 public class SummaryEntry {
 
     private final OrderType type;
     private final int price;
     private final int quantity;
+    
+    /**
+     * Method to set and get SummaryEntry
+     *  @param type
+     *  @param price
+     *  @param quantity
+     */
 
     public SummaryEntry(OrderType type, int price, int quantity) {
         this.type = type;

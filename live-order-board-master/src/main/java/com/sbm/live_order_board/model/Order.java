@@ -1,4 +1,4 @@
-package com.sbm.live_order_board;
+package com.sbm.live_order_board.model;
 
 public class Order {
 
@@ -7,6 +7,14 @@ public class Order {
     private final int price;
     private final int quantity;
 
+    /**
+     * Method to set and get Order
+     *  @param userId
+     *  @param type
+     *  @param price
+     *  @param quantity
+     */
+    
     public Order(int userId, OrderType type, int price, int quantity) {
         this.type = type;
         this.userId = userId;
